@@ -108,3 +108,21 @@
 
 \- ACF of squared returns: positive at all 10 lags for BTC and ETH; ETH is stronger (lags 1, 2, 4, 5, 7 above the band vs 1, 4, 7 for BTC). This is volatility clustering, which is why Week 5 forecasts volatility. Spikes at lags 4 and 7 appear in both coins: unexplained, possibly a weekly effect or driven by a few extreme shared days.
 
+
+
+
+
+\## Day 7
+
+
+
+\- Correlation measured on returns, not prices (price correlation is inflated by shared trends). BTC-ETH return correlation: <value> (bootstrap 95% interval <range>).
+
+\- ETH is more volatile than BTC: std ratio <value>, ETH moved more on <share> of days (Wilcoxon p <value>).
+
+\- Mann-Whitney U used for fraud vs normal because amounts are skewed. Effect sizes (P fraud > normal): amount <value>, v14 <value>, v17 <value>. Features, not amount, carry the signal.
+
+\- p-values are tiny with 280k rows, so effect sizes drive decisions.
+
+\- Week 2 findings summarized in EDA\_findings.md.
+

@@ -50,3 +50,21 @@
 
 \- Best day 2021-02-08 (log return +0.17, about +19%).
 
+
+
+\## Day 4
+
+
+
+\- Fraud data has V1-V28 PCA features (anonymized): interpretable only through importance, not meaning.
+
+\- Missing values: <number from output>. Duplicate rows: <number from output>. Will drop duplicates before splitting to avoid train/test leakage.
+
+\- Top features by correlation with class: v17, v14, <third from output>. Fraud values sit far below 0 while normal values cluster tightly at 0.
+
+\- Fraud amounts cluster at specific values (about $0, $1, $100) while normal amounts are smooth: possible card-testing behaviour (hypothesis, not proven).
+
+\- Fraud rate by hour peaks at hours 2 and 4, but with only 492 frauds the pattern is noisy; 'time' is seconds from the first transaction, not clock time.
+
+\- Only 492 frauds: a 20% test set has about 98 frauds, so metrics are noisy. Use stratified splits and cross-validation in Week 3.
+

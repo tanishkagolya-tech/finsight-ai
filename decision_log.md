@@ -58,13 +58,13 @@
 
 \- Fraud data has V1-V28 PCA features (anonymized): interpretable only through importance, not meaning.
 
-\- Missing values: <number from output>. Duplicate rows: <number from output>. Will drop duplicates before splitting to avoid train/test leakage.
+\- Missing values: 0. Duplicate rows: 1,081 (1,062 normal, 19 fraud). Dropping them before splitting avoids train/test leakage; the fraud class shrinks from 492 to 473 (rate 0.167%).
 
-\- Top features by correlation with class: v17, v14, <third from output>. Fraud values sit far below 0 while normal values cluster tightly at 0.
+\- Top features by absolute correlation with class: v17 (0.33), v14 (0.30), v12 (0.26). Fraud values sit far below 0 while normal values cluster tightly at 0.
 
 \- Fraud amounts cluster at specific values (about $0, $1, $100) while normal amounts are smooth: possible card-testing behaviour (hypothesis, not proven).
 
-\- Fraud rate by hour peaks at hours 2 and 4, but with only 492 frauds the pattern is noisy; 'time' is seconds from the first transaction, not clock time.
+\- Fraud rate by hour peaks at hours 2 (1.7%) and 4 (1.0%) versus 0.17% overall, but with only 473 frauds the pattern is noisy; 'time' is seconds from the first transaction, not clock time.
 
-\- Only 492 frauds: a 20% test set has about 98 frauds, so metrics are noisy. Use stratified splits and cross-validation in Week 3.
+\- Only 473 frauds after dedup: a 20% test set has about 95 frauds, so metrics are noisy. Use stratified splits and cross-validation in Week 3.
 

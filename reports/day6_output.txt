@@ -1,0 +1,22 @@
+=======================================================
+BTC-USD | days: 2495
+ADF log price : stat=  -1.842  p=0.3597  -> NOT stationary
+ADF log return: stat= -13.092  p=< 0.0001  -> stationary
+Jarque-Bera on returns:         stat=52115.2  p=< 0.0001
+Jarque-Bera on simulated normal: stat=0.9  p=0.6428
+Skew: -1.298 | Excess kurtosis: 22.286
+95% band: +/-0.039
+ACF of returns, lags 1-10:         [-0.055  0.044 -0.017  0.057  0.004  0.011 -0.02  -0.041  0.038  0.009]
+ACF of squared returns, lags 1-10: [0.065 0.02  0.014 0.066 0.02  0.015 0.119 0.006 0.006 0.015]
+Saved reports/btc_day6_acf.png
+=======================================================
+ETH-USD | days: 2495
+ADF log price : stat=  -2.822  p=0.0551  -> NOT stationary
+ADF log return: stat= -13.111  p=< 0.0001  -> stationary
+Jarque-Bera on returns:         stat=26325.7  p=< 0.0001
+Jarque-Bera on simulated normal: stat=0.9  p=0.6428
+Skew: -1.003 | Excess kurtosis: 15.821
+95% band: +/-0.039
+ACF of returns, lags 1-10:         [-0.053  0.041 -0.009  0.054 -0.034  0.039 -0.016 -0.038  0.003  0.057]
+ACF of squared returns, lags 1-10: [0.098 0.05  0.03  0.117 0.055 0.023 0.094 0.008 0.013 0.029]
+Saved reports/eth_day6_acf.png

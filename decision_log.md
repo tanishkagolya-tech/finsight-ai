@@ -92,3 +92,19 @@
 
 \- v14 and v17 averages differ by about 7 units between fraud and normal: strong features for Week 3.
 
+
+
+
+
+\## Day 6
+
+
+
+\- ADF test: log prices are NOT stationary (BTC p = 0.36; ETH p = 0.055, borderline), log returns ARE stationary (both p < 0.0001). Model returns, not prices.
+
+\- Jarque-Bera rejects normality for returns (BTC stat 52,115; ETH 26,326; both p < 0.0001); a simulated normal series passes (stat 0.9, p = 0.64). With 2,500 points the test rejects easily, so normality is judged by excess kurtosis (BTC 22.3, ETH 15.8) and skew (BTC -1.30, ETH -1.00).
+
+\- ACF of returns: a few lags cross the 95% band, but the largest is about 0.057 (under 0.4% of variance), so direction is not usefully predictable. The band assumes independent data, so some crossings may be spurious with fat tails.
+
+\- ACF of squared returns: positive at all 10 lags for BTC and ETH; ETH is stronger (lags 1, 2, 4, 5, 7 above the band vs 1, 4, 7 for BTC). This is volatility clustering, which is why Week 5 forecasts volatility. Spikes at lags 4 and 7 appear in both coins: unexplained, possibly a weekly effect or driven by a few extreme shared days.
+

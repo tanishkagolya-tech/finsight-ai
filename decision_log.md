@@ -68,3 +68,27 @@
 
 \- Only 473 frauds after dedup: a 20% test set has about 95 frauds, so metrics are noisy. Use stratified splits and cross-validation in Week 3.
 
+
+
+\## Day 5
+
+
+
+\- Week 1 SQL goal reached: 22 queries covering aggregation, window functions (LAG, running MAX, RANK), CTEs, JOINs and HAVING.
+
+\- Computed daily returns and drawdown in SQL; will recompute in pandas in Week 2 to cross-check.
+
+\- BTC max drawdown in this data: -76.6% (2022-11-21, close 15,787 vs peak 67,567). Top-5 drawdown rows are all from one episode.
+
+\- 105 BTC days (about 4%) fell more than 5%. Big crashes are followed by big rebounds (March 2020, Nov 2022, Feb 2026): volatility clustering.
+
+\- ETH is more volatile than BTC (best day +25.9% vs +18.8%); 3 of ETH's top-10 days are also BTC top-10 days; ETH rose while BTC fell on 236 days (about 9.5%).
+
+\- Big-volume days match big price moves, except 2021-02-26 (volume 351B, price -1.6%): further evidence it is a data error. Its effect on the yearly mean is small (about 0.8B), but it matters for the max and for models.
+
+\- BTC average volume is higher in bull years and lowest in 2023 (18.3B).
+
+\- Fraud rate is U-shaped by amount (0.256% under 10, 0.061% for 10-50, 0.290% for 200+), peaks at hours 2 and 4, and is 1.48% for zero-amount transactions (8.6x the base rate).
+
+\- v14 and v17 averages differ by about 7 units between fraud and normal: strong features for Week 3.
+

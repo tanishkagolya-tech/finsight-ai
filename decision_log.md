@@ -26,3 +26,17 @@
 
 \- Last row of price data is the current, incomplete day: drop it before modeling.
 
+
+
+\## Day 3
+
+
+
+\- Use log returns instead of raw prices: stationary-ish, additive over time.
+
+\- Dropped the last (incomplete) day before computing returns.
+
+\- BTC returns show fat tails (high excess kurtosis): a normal-distribution risk model would underestimate extreme days.
+
+\- Compare medians as well as means: fraud amounts are skewed.
+

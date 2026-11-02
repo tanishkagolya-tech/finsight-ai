@@ -42,5 +42,11 @@
 
 \- 2021-02-26 BTC volume (351B) is about 3x the next-largest nearby day while price barely moved: likely a data error. Flagged, not deleted. Verify against another source.
 
-\- Compare medians as well as means: fraud amounts are likely skewed (to be confirmed from the day3\_fraud.py output).
+\- Compare medians as well as means: fraud median ($9.25) is far below normal median ($22.00) even though the fraud mean is higher ($122 vs $88). Amounts are right-skewed, so amount alone cannot detect fraud.
+
+\- BTC daily log returns (2020-2026, 2,495 days): mean 0.095%, std 3.14% (about 60% annualized), skew -1.30, excess kurtosis 22.3.
+
+\- Worst day 2020-03-12 (log return -0.46, about -37%) is roughly 15 standard deviations below the mean: practically impossible under a normal model.
+
+\- Best day 2021-02-08 (log return +0.17, about +19%).
 

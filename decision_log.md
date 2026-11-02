@@ -32,11 +32,15 @@
 
 
 
-\- Use log returns instead of raw prices: stationary-ish, additive over time.
+\- Use log returns instead of raw prices: they add up across days and are easier to compare over time.
 
 \- Dropped the last (incomplete) day before computing returns.
 
 \- BTC returns show fat tails (high excess kurtosis): a normal-distribution risk model would underestimate extreme days.
 
-\- Compare medians as well as means: fraud amounts are skewed.
+\- BTC volatility clusters: calm and wild periods come in groups. This is why Week 5 forecasts volatility, not price.
+
+\- 2021-02-26 BTC volume (351B) is about 3x the next-largest nearby day while price barely moved: likely a data error. Flagged, not deleted. Verify against another source.
+
+\- Compare medians as well as means: fraud amounts are likely skewed (to be confirmed from the day3\_fraud.py output).
 

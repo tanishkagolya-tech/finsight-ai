@@ -109,20 +109,12 @@
 \- ACF of squared returns: positive at all 10 lags for BTC and ETH; ETH is stronger (lags 1, 2, 4, 5, 7 above the band vs 1, 4, 7 for BTC). This is volatility clustering, which is why Week 5 forecasts volatility. Spikes at lags 4 and 7 appear in both coins: unexplained, possibly a weekly effect or driven by a few extreme shared days.
 
 
+## Day 7
 
-
-
-\## Day 7
-
-
-
-\- Correlation measured on returns, not prices (price correlation is inflated by shared trends). BTC-ETH return correlation: <value> (bootstrap 95% interval <range>).
-
-\- ETH is more volatile than BTC: std ratio <value>, ETH moved more on <share> of days (Wilcoxon p <value>).
-
-\- Mann-Whitney U used for fraud vs normal because amounts are skewed. Effect sizes (P fraud > normal): amount <value>, v14 <value>, v17 <value>. Features, not amount, carry the signal.
-
-\- p-values are tiny with 280k rows, so effect sizes drive decisions.
-
-\- Week 2 findings summarized in EDA\_findings.md.
-
+- Correlation measured on returns, not prices (shared trends can inflate price correlation). BTC-ETH return correlation: 0.833 Pearson, 0.816 Spearman (bootstrap 95% interval 0.804 to 0.863); log price correlation was 0.868. BTC explains about 69% of ETH's daily variation.
+- Rolling 90-day correlation ranges 0.56 to 0.96 and is highest in windows containing the March 2020 and November 2022 crashes: diversification between BTC and ETH weakens in stress (two episodes, so a pattern, not a proven law).
+- ETH is more volatile than BTC: std ratio 1.34 (4.2% vs 3.14%), ETH moved more on 65.3% of days (Wilcoxon p < 0.0001).
+- Mann-Whitney U used for fraud vs normal because amounts are skewed. Effect sizes (P fraud > normal): amount 0.444 (weak), v17 0.200 (strong), v14 0.053 (very strong). Features, not amount, carry the signal.
+- After dedup, median fraud amount is $9.82 (it was $9.25 with duplicates).
+- p-values are tiny with 283k rows, so effect sizes drive decisions.
+- Week 2 findings summarized in EDA_findings.md.

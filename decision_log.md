@@ -62,3 +62,13 @@
 - After dedup, median fraud amount is $9.82 (it was $9.25 with duplicates).
 - p-values are tiny with 283k rows, so effect sizes drive decisions.
 - Week 2 findings summarized in EDA_findings.md.
+
+## Day 8
+
+- Duplicates removed before splitting (1,081 rows, 19 fraud), leaving 283,726 rows and 473 frauds, so no identical row can appear in both train and test.
+- Stratified 80/20 split with random_state=42: train 226,980 rows (378 frauds), test 56,746 rows (95 frauds), both 0.167%. Without stratify, test fraud counts varied by seed (84 to 87 across 5 seeds), so stratify mainly guarantees a fixed test composition.
+- Test set is used only once, for the final score. All tuning uses 5-fold stratified CV inside the training set (about 76 validation frauds per fold).
+- Split saved in table transactions_split (column 'split') so every later script uses the same rows.
+- Time check: 399 frauds in the first 80% of time and 74 in the last 20%, so a time-based split is feasible as a robustness check in Week 3.
+- Limitation: the split is by row and the data has no card or customer ID, so related transactions may sit on both sides; scores may be slightly optimistic. Near-duplicates are not removed.
+- Scaling and resampling (SMOTE) will be fitted on training folds only, inside a Pipeline.

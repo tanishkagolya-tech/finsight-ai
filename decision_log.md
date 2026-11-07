@@ -91,3 +91,15 @@
 - Cost-based thresholds (ratio = cost of a missed fraud in false-alarm units; 10, 100 and 500 are assumptions): ratio 10 -> threshold 0.046, 307 caught, 125 false alarms, cost 835 (3,780 if nothing is flagged); ratio 100 -> 0.009, 327 caught, 585 false alarms, cost 5,685 (37,800); ratio 500 -> 0.004, 333 caught, 2,525 false alarms, cost 25,025 (189,000). Flagging everything costs 226,602.
 - Higher fraud cost lowers the best threshold. The last few frauds are very expensive to catch: even at ratio 500, 45 frauds are missed.
 - Thresholds chosen on the same out-of-fold data used to measure cost are optimistic; the final threshold will be applied to the test set once, and re-tuned for every new model.
+
+
+## Day 11
+
+- Compared LogReg, Random Forest (100 trees) and XGBoost (300 trees, depth 4) with the same 5 stratified folds as Day 9-10, training set only. Hyperparameters are out-of-the-box, not tuned.
+- PR-AUC (mean +/- std over folds): LogReg 0.750 +/- 0.045, RandomForest 0.846 +/- 0.031, XGBoost 0.850 +/- 0.027, XGBoost + scale_pos_weight 0.847 +/- 0.027.
+- Paired fold-by-fold comparison vs LogReg: XGBoost +0.100 on average and better in 5 of 5 folds (smallest gain +0.061); RandomForest +0.095, 5 of 5. Folds share training rows, so these are not independent tests, but the gain is consistent. XGBoost vs RandomForest differ by 0.004 (XGBoost better in 3 of 5 folds): a tie.
+- Fit time per fold: LogReg 0.8 s, RandomForest 61.7 s, XGBoost 7.8 s. XGBoost chosen: same PR-AUC as RandomForest at about one eighth of the time, and about +0.10 PR-AUC over LogReg for about 10x the time.
+- scale_pos_weight changed PR-AUC by -0.003 (noise) and distorts probabilities, so plain XGBoost is kept.
+- RandomForest has lower ROC-AUC than LogReg (0.959 vs 0.976) but much higher PR-AUC: the two metrics disagree, another reason PR-AUC is the main metric. Possible cause (untested): ROC-AUC is sensitive to frauds ranked very low, PR-AUC to the top of the ranking.
+- XGBoost gain importance: v17 0.742, v12 0.082, v14 0.020, amount 0.006. Matches the Day 4/7 findings in the main features, but one feature carries most of the model, which is a risk if v17 shifts. v14 ranks low despite a strong single-feature AUC (0.95), possibly because its information overlaps with v17 (untested; check with SHAP on Day 13). Importance shows what the model used, not why fraud happens.
+- Next: tune XGBoost (Day 12), explain it with SHAP (Day 13). Day 10 thresholds do not carry over; re-tune the threshold for the final model.

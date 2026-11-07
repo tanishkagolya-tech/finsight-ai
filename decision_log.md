@@ -82,3 +82,12 @@
 - PR-AUC is the main metric; ROC-AUC (0.976) is flattering on imbalanced data.
 - Fold-to-fold std is about 0.05 PR-AUC, so differences smaller than that between models are treated as noise.
 - Scaling is inside a Pipeline, so it is fitted on training folds only.
+
+## Day 10
+
+- Threshold analysis uses 5-fold out-of-fold predictions on the training set only (test untouched).
+- Pooled OOF PR-AUC: plain 0.751, balanced 0.738 (difference is within the fold-to-fold noise of about 0.05).
+- class_weight check: at the same recall (0.902, 341 of 378 frauds), balanced at 0.5 gives 5,492 false alarms (precision 0.058) and the plain model at threshold 0.002 gives 7,220 (precision 0.045). So class_weight is mostly but not purely a threshold shift: it helps somewhat in the high-recall region. The plain threshold was found on a 0.001 grid, so the gap may be slightly exaggerated.
+- Cost-based thresholds (ratio = cost of a missed fraud in false-alarm units; 10, 100 and 500 are assumptions): ratio 10 -> threshold 0.046, 307 caught, 125 false alarms, cost 835 (3,780 if nothing is flagged); ratio 100 -> 0.009, 327 caught, 585 false alarms, cost 5,685 (37,800); ratio 500 -> 0.004, 333 caught, 2,525 false alarms, cost 25,025 (189,000). Flagging everything costs 226,602.
+- Higher fraud cost lowers the best threshold. The last few frauds are very expensive to catch: even at ratio 500, 45 frauds are missed.
+- Thresholds chosen on the same out-of-fold data used to measure cost are optimistic; the final threshold will be applied to the test set once, and re-tuned for every new model.

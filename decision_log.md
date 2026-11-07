@@ -72,3 +72,13 @@
 - Time check: 399 frauds in the first 80% of time and 74 in the last 20%, so a time-based split is feasible as a robustness check in Week 3.
 - Limitation: the split is by row and the data has no card or customer ID, so related transactions may sit on both sides; scores may be slightly optimistic. Near-duplicates are not removed.
 - Scaling and resampling (SMOTE) will be fitted on training folds only, inside a Pipeline.
+
+## Day 9
+
+- Baselines evaluated with 5-fold stratified CV on the training set only (test set untouched). 'time' dropped as a feature: it is only the position inside a 2-day window.
+- Dummy model (always predicts the prior): accuracy 0.998, recall 0, PR-AUC 0.002 (about equal to the fraud rate): accuracy is useless here.
+- Logistic Regression (threshold 0.5): PR-AUC 0.750 +/- 0.045, precision 0.865, recall 0.627, ROC-AUC 0.976.
+- class_weight='balanced': recall 0.902, precision 0.059, PR-AUC 0.750 +/- 0.049. Per fold this catches about 21 more frauds but raises about 1,077 extra false alarms. PR-AUC is unchanged, so it appears to move the operating point rather than improve the ranking (to be verified with threshold tuning on Day 10).
+- PR-AUC is the main metric; ROC-AUC (0.976) is flattering on imbalanced data.
+- Fold-to-fold std is about 0.05 PR-AUC, so differences smaller than that between models are treated as noise.
+- Scaling is inside a Pipeline, so it is fitted on training folds only.
